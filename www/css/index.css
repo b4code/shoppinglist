@@ -1,0 +1,159 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+.background-white {
+    background-color: #fff;
+}
+
+.cart-header {
+    background-color: #0065FF;
+    padding: 9px;
+    margin-bottom: 0px;
+    font-size: x-large;
+    font-weight: bold;
+    height: 10%;
+}
+
+.white {
+    color: #fff;
+}
+
+.orange {
+    color: #F08248;
+}
+
+.background-orange {
+    background-color: #F08248;
+}
+
+.dark-gray {
+    color:darkgrey;
+}
+
+.background-blue {
+    background-color: #3FA9F5;
+}
+
+.blue {
+    color: #2aabd2;
+}
+
+.cart-container {
+    background-color: #3FA9F5;
+    padding: 0px;
+}
+
+.shopping-list {
+    width: 100%;
+    padding: 10px;
+    margin: 1px;
+    background-color: ghostwhite;
+    font-size: 1.5em;
+    overflow-y: auto;
+}
+
+.new-list-button {
+    background-color: #B5C516;
+    width: 100%;
+}
+
+.options-button {
+    text-align: center;
+    background-color: #B5C516;
+}
+
+.full-width {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.float-bottom {
+    float: bottom;
+}
+
+.center-button {
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    text-align: center;
+}
+
+.top-ad-space {
+    background-color: white;
+    border-bottom-color: gray;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    height: 5%;
+}
+
+.bottom-ad-space {
+    background-color: white;
+    border-bottom-color: gray;
+    padding-top: 2px;
+    margin-top: 10px;
+    height: 5%;
+}
+
+.list-container {
+    height: 70%;
+    overflow-y: scroll;
+}
+
+.list-options {
+    width: 100%;
+    padding: 10px;
+    margin: 1px;
+    font-size: 1.5em;
+    font-weight: bold;
+    float: right;
+    background-color: #F08248;
+}
+
+#create-bottom {
+    margin: 0 auto;
+    position: relative;
+    display: block;
+    text-align: center;
+    height: 10%;
+    float: bottom;
+}
+
+#options-space {
+    width:100%;
+    background-color: darkgray;
+    height: 10%;
+}
+
+.options {
+    width: 50%;
+    margin: 0 auto;
+    padding: 3px;
+}
+
+#list-name {
+    background-color: #3FA9F5;
+    padding: 9px;
+    margin-bottom: 0px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.item-options {
+    background-color: #86C7E3;
+
+}

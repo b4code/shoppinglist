@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <title>Speech Recognition plugin demo</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body class="background-blue" style="height: 100%; font-family: 'PT Sans'">
+    <div class="container cart-container" style="height: 100%">
+        <div id="top-add-space" class="top-ad-space center-button"><span>Ads come here</span></div>
+
+        <div class="cart-header">
+            <span class="glyphicon glyphicon-shopping-cart orange" aria-hidden="true"></span>
+            <span class="white" style="padding-left: 5px"><b>Smart Shopper List</b></span>
+        </div>
+
+        <div id="shoppping-lists" class="list-container">
+            <div class="shopping-list">
+                <div style="float:left; padding-bottom: 2px" >
+                    <span>Walmart</span>
+                </div>
+                <div style="float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger dark-gray" data-toggle="collapse" data-target="#demo1"></span>
+                </div>
+                <br>
+                <div id="demo1" class="full-width collapse background-orange" style="padding: 10px; overflow-y: auto">
+                    <div style="float: right">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true" style="padding-right: 5px"></span>
+                        <span>   </span>
+                        <span class="glyphicon glyphicon-trash white" aria-hidden="true" style="padding-left: 5px"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left; padding-bottom: 2px" >
+                    <span>Trader Joes</span>
+                </div>
+                <div style="float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger dark-gray" data-toggle="collapse" data-target="#demo2"></span>
+                </div>
+                <br>
+                <div id="demo2" class="full-width collapse background-orange" style="padding: 10px; overflow-y: auto">
+                    <div style="float: right">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
+                        <span>   </span>
+                        <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left; padding-bottom: 2px" >
+                    <span>Pier 1 Imports</span>
+                </div>
+                <div style="float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger dark-gray" data-toggle="collapse" data-target="#demo3"></span>
+                </div>
+                <br>
+                <div id="demo3" class="full-width collapse background-orange" style="padding: 10px; overflow-y: auto">
+                    <div style="float: right">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
+                        <span>   </span>
+                        <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left; padding-bottom: 2px" >
+                    <span>Safeway</span>
+                </div>
+                <div style="float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger dark-gray" data-toggle="collapse" data-target="#demo4"></span>
+                </div>
+                <br>
+                <div id="demo4" class="full-width collapse background-orange" style="padding: 10px; overflow-y: auto">
+                    <div style="float: right">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
+                        <span>   </span>
+                        <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left; padding-bottom: 2px" >
+                    <span>Target</span>
+                </div>
+                <div style="float: right">
+                    <span class="glyphicon glyphicon-menu-hamburger dark-gray" data-toggle="collapse" data-target="#demo5"></span>
+                </div>
+                <br>
+                <div id="demo5" class="full-width collapse background-orange" style="padding: 10px; overflow-y: auto">
+                    <div style="float: right">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
+                        <span>   </span>
+                        <span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left">
+                    <span></span>
+                </div>
+                <div style="float: right">
+                    <!--<span class="glyphicon glyphicon-menu-hamburger dark-gray" aria-hidden="true"></span>-->
+                </div>
+                <br>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left">
+                    <span></span>
+                </div>
+                <div style="float: right">
+                    <!--<span class="glyphicon glyphicon-menu-hamburger dark-gray" aria-hidden="true"></span>-->
+                </div>
+                <br>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left">
+                    <span></span>
+                </div>
+                <div style="float: right">
+                    <!--<span class="glyphicon glyphicon-menu-hamburger dark-gray" aria-hidden="true"></span>-->
+                </div>
+                <br>
+            </div>
+            <div class="shopping-list">
+                <div style="float:left">
+                    <span></span>
+                </div>
+                <div style="float: right">
+                    <!--<span class="glyphicon glyphicon-menu-hamburger dark-gray" aria-hidden="true"></span>-->
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <div id="create-button">
+            <button type="submit" class = "btn btn-success btn-lg new-list-button" style="font-size: x-large">
+                <span class="glyphicon glyphicon-plus white" aria-hidden="true" style="padding-right: 5px"></span>New
+            </button>
+        </div>
+
+        <div id="bottom-ad-space" class="bottom-ad-space center-button"><span>Ads come here</span></div>
+    </div>
+
+</body>
+</html>
