@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
 <body class="background-blue" style="height: 100%; font-family: 'PT Sans'">
     <div class="container cart-container" style="height: 100%">
@@ -20,8 +21,8 @@
 
         <div id="shoppping-lists" class="list-container">
             <div class="shopping-list">
-                <div style="float:left; padding-bottom: 2px" >
-                    <span>Walmart</span>
+                <div style="float:left; padding-bottom: 2px; width: 80%;" >
+                    <span id="walmart-text-id">Walmart</span>
                 </div>
                 <div style="float: right">
                     <span class="glyphicon glyphicon-menu-hamburger dark-gray" data-toggle="collapse" data-target="#demo1"></span>
@@ -29,9 +30,9 @@
                 <br>
                 <div id="demo1" class="full-width collapse background-orange" style="padding: 10px; overflow-y: auto">
                     <div style="float: right">
-                        <span class="glyphicon glyphicon-share white" aria-hidden="true" style="padding-right: 5px"></span>
+                        <span id="walmart-share-id" class="glyphicon glyphicon-share white" aria-hidden="true" style="padding-right: 5px"></span>
                         <span>   </span>
-                        <span class="glyphicon glyphicon-trash white" aria-hidden="true" style="padding-left: 5px"></span>
+                        <span id="walmart-delete-id" class="glyphicon glyphicon-trash white" aria-hidden="true" style="padding-left: 5px"></span>
                     </div>
                 </div>
             </div>

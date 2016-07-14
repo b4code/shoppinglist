@@ -77,6 +77,11 @@
     background-color: #B5C516;
 }
 
+.green {
+    color: white;
+    background-color: lawngreen;
+}
+
 .full-width {
     width: 100%;
     margin: 0 auto;
