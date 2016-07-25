@@ -22,11 +22,9 @@
 
 .cart-header {
     background-color: #0065FF;
-    padding: 9px;
-    margin-bottom: 0px;
-    font-size: x-large;
+    font-size: large;
     font-weight: bold;
-    height: 10%;
+    height: 5%;
 }
 
 .white {
@@ -78,8 +76,11 @@
 }
 
 .green {
-    color: white;
-    background-color: lawngreen;
+    color: lawngreen;
+}
+
+.background-green {
+    background-color: #B5C516;
 }
 
 .full-width {
@@ -96,6 +97,15 @@
     position: relative;
     display: block;
     text-align: center;
+}
+
+* {
+    outline: none;
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
 }
 
 .top-ad-space {
@@ -117,6 +127,7 @@
 .list-container {
     height: 70%;
     overflow-y: scroll;
+    width: 100%;
 }
 
 .list-options {

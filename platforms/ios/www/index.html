@@ -1,52 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head>
     <title>Speech Recognition plugin demo</title>
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/shopper.js"></script>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 </head>
-<body>
+<body class="background-blue" style="height: 100%; font-family: 'PT Sans'">
 
-<script type="text/javascript">
+<div id="main-container" class="container cart-container" style="height: 100%">
+    <div class="cart-header" style="height: 5vh; margin-top: 2px">
+        <div style="padding-left: 4px; padding-top: 2px">
+            <span class="glyphicon glyphicon-shopping-cart orange" aria-hidden="true"></span>
+            <span class="white" style="padding-left: 5px"><b>Smart Shopper List</b></span>
+        </div>
+    </div>
 
-    function onDeviceReady(){
-        console.log("Device is ready");
-    }
+    <div id="shopping-lists-page" style="position: relative">
+        <div id="shopping-lists" class="list-container" style="height: 87vh;"></div>
+        <div style="height: 8vh">
+            <button id="create-list-button" type="submit" class = "btn btn-success btn-lg new-list-button" style="font-size: x-large; position: absolute; bottom: 0">
+                <span class="glyphicon glyphicon-plus white" aria-hidden="true" style="padding-right: 5px"></span>New
+            </button>
+        </div>
+    </div>
 
-    function recognizeSpeech() {
-        var maxMatches = 5;
-        var promptString = "Speak now"; // optional
-        var language = "en-US";                     // optional
-        window.plugins.speechrecognizer.startRecognize(function(result){
-            alert(result);
-        }, function(errorMessage){
-            console.log("Error message: " + errorMessage);
-        }, maxMatches, promptString, language);
-    }
+    <div id="item-lists-page" style="display: none; position: relative">
+        <div id="list-name" style="height: 7vh">
+            <div>
+                <div class="glyphicon glyphicon-list white" aria-hidden="true" style="display: inline; float: left; padding-left: 5px"></div>
+                <div id="list-name-id" class="white" style="padding-left: 5px; width: 70%; display: inline" contenteditable="true"><b></b></div>
+                <div id="list-name-edit" class="glyphicon glyphicon-pencil white" aria-hidden="true" style="padding-right: 5px; float: right; display: inline"></div>
+            </div>
+        </div>
 
-    // Show the list of the supported languages
-    function getSupportedLanguages() {
-        window.plugins.speechrecognizer.getSupportedLanguages(function(languages){
-            // display the json array
-            alert(languages);
-        }, function(error){
-            alert("Could not retrieve the supported languages : " + error);
-        });
-    }
+        <div id="item-lists" class="list-container" style="height: 80vh">
+        </div>
 
-    // Check to see if a recognition activity is present
-    function checkSpeechRecognition() {
-        window.plugins.speechrecognizer.checkSpeechRecognition(function(){
-            alert('Speech Recogition is present! :D');
-        }, function(){
-            alert('Speech Recogition not found! :(');
-        });
-    }
+        <!--<div style="width: 100%; overflow-y: auto; padding: 10px; background-color: lightgray;>-->
+            <div style="width: 100%; margin: auto; display: block; overflow-y: auto">
+                <div id="taskbar-group" class="btn-group btn-group-lg" role="group" aria-label="..." style="margin: auto; width: 100%; display: block">
+                    <button id="back-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-menu-left white" aria-hidden="true"></span>
+                    </button>
+                    <button id="voice-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-ice-lolly white" aria-hidden="true"></span>
+                    </button>
+                    <button id="camera-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-camera white" aria-hidden="true"></span>
+                    </button>
+                    <button id="share-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
+                    </button>
+                    <button id="add-item-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-plus white" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+</div>
 
-    document.addEventListener("deviceready", onDeviceReady, true);
-</script>
-
-<button onclick="recognizeSpeech();">Start recognition</button>
-<button onclick="getSupportedLanguages();">Get Supported Languages</button>
-<button onclick="checkSpeechRecognition();">Check Speech Recognition</button>
 </body>
 </html>

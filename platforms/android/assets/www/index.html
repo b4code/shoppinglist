@@ -16,128 +16,56 @@
 <body class="background-blue" style="height: 100%; font-family: 'PT Sans'">
 
 <div id="main-container" class="container cart-container" style="height: 100%">
-    <div id="top-add-space" class="top-ad-space center-button"><span>Ads come here</span></div>
-
-    <div id="list-name" contenteditable="true">
-        <div>
-            <span class="glyphicon glyphicon-th-list white" aria-hidden="true"></span>
-            <span id="list-name-id" class="white" style="padding-left: 5px"><b>Safeway</b></span>
-            <span class="glyphicon glyphicon-pencil white" aria-hidden="true" style="padding-right: 5px; float: right"></span>
+    <div class="cart-header" style="height: 5vh; margin-top: 2px">
+        <div style="padding-left: 4px; padding-top: 2px">
+            <span class="glyphicon glyphicon-shopping-cart orange" aria-hidden="true"></span>
+            <span class="white" style="padding-left: 5px"><b>Smart Shopper List</b></span>
         </div>
     </div>
 
-    <div id="shopping-lists" class="list-container">
-        <!--<div id="bread-top-div" class="shopping-list">-->
-            <!--<div style="float:left; padding-bottom: 2px; width: 70%" contenteditable="true">-->
-                <!--<span id="bread-span">Bread</span>-->
-            <!--</div>-->
-            <!--<div style="float: right">-->
-                <!--<span class="glyphicon glyphicon-chevron-right dark-gray" data-toggle="collapse" data-target="#demo1"></span>-->
-            <!--</div>-->
-            <!--<br>-->
-            <!--<div id="demo1" class="full-width collapse item-options" style="padding: 10px; overflow-y: auto">-->
-                <!--<div style="float: left">-->
-                    <!--<div style="display: inline; float: left">-->
-                        <!--Q:-->
-                    <!--</div>-->
-                    <!--<div class="input-group" style="width: 120px; float: left; padding-left: 10px">-->
-                      <!--<span class="input-group-btn">-->
-                          <!--<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">-->
-                            <!--<span class="glyphicon glyphicon-minus"></span>-->
-                          <!--</button>-->
-                      <!--</span>-->
-                        <!--<input id="bread-q" type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">-->
-                      <!--<span class="input-group-btn">-->
-                          <!--<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">-->
-                              <!--<span class="glyphicon glyphicon-plus"></span>-->
-                          <!--</button>-->
-                      <!--</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div style="float: left; padding-left: 20px">-->
-                    <!--<div style="display: inline; float: left">-->
-                        <!--S:-->
-                    <!--</div>-->
-                    <!--<div class="input-group" style="width: 120px; float: left; padding-left: 10px">-->
-                        <!--<input id="bread-s" type="text" name="quant[2]" class="form-control" value="10 lbs">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div id="bread-delete" style="float: right; padding-right: 10px">-->
-                    <!--<span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>-->
-                <!--</div>-->
-                <!--<div id="bread-complete" style="float: right; padding-right: 10px">-->
-                    <!--<span class="glyphicon glyphicon-ok white" aria-hidden="true"></span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="shopping-list">-->
-            <!--<div style="float:left; padding-bottom: 2px" >-->
-                <!--<span>Butter</span>-->
-            <!--</div>-->
-            <!--<div style="float: right">-->
-                <!--<span class="glyphicon glyphicon-chevron-right dark-gray" data-toggle="collapse" data-target="#demo2"></span>-->
-            <!--</div>-->
-            <!--<br>-->
-            <!--<div id="demo2" class="full-width collapse item-options" style="padding: 10px; overflow-y: auto">-->
-                <!--<div style="float: left">-->
-                    <!--<div style="display: inline; float: left">-->
-                        <!--Q:-->
-                    <!--</div>-->
-                    <!--<div class="input-group" style="width: 120px; float: left; padding-left: 10px">-->
-                      <!--<span class="input-group-btn">-->
-                          <!--<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">-->
-                            <!--<span class="glyphicon glyphicon-minus"></span>-->
-                          <!--</button>-->
-                      <!--</span>-->
-                        <!--<input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">-->
-                      <!--<span class="input-group-btn">-->
-                          <!--<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">-->
-                              <!--<span class="glyphicon glyphicon-plus"></span>-->
-                          <!--</button>-->
-                      <!--</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div style="float: left; padding-left: 20px">-->
-                    <!--<div style="display: inline; float: left">-->
-                        <!--S:-->
-                    <!--</div>-->
-                    <!--<div class="input-group" style="width: 120px; float: left; padding-left: 10px">-->
-                        <!--<input type="text" name="quant[2]" class="form-control" value="10 lbs">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div style="float: right; padding-right: 10px">-->
-                    <!--<span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>-->
-                <!--</div>-->
-                <!--<div style="float: right; padding-right: 10px">-->
-                    <!--<span class="glyphicon glyphicon-ok white" aria-hidden="true"></span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+    <div id="shopping-lists-page" style="position: relative">
+        <div id="shopping-lists" class="list-container" style="height: 87vh;"></div>
+        <div style="height: 8vh">
+            <button id="create-list-button" type="submit" class = "btn btn-success btn-lg new-list-button" style="font-size: x-large; position: absolute; bottom: 0">
+                <span class="glyphicon glyphicon-plus white" aria-hidden="true" style="padding-right: 5px"></span>New
+            </button>
+        </div>
     </div>
 
-    <div style="width: 100%; overflow-y: auto; padding: 10px; background-color: lightgray">
-        <div style="width: 100%; margin: auto; display: block; overflow-y: auto">
-            <div id="taskbar-group" class="btn-group btn-group-lg" role="group" aria-label="..." style="margin: auto; width: 100%; display: block">
-                <button type="button" class="btn btn-sm background-blue" style="width: 20%">
-                    <span class="glyphicon glyphicon-menu-left white" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-sm background-blue" style="width: 20%">
-                    <span class="glyphicon glyphicon-ice-lolly white" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-sm background-blue" style="width: 20%">
-                    <span class="glyphicon glyphicon-camera white" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-sm background-blue" style="width: 20%">
-                    <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
-                </button>
-                <button id="add-item-btn" type="button" class="btn btn-sm background-blue" style="width: 20%">
-                    <span class="glyphicon glyphicon-plus white" aria-hidden="true"></span>
-                </button>
+    <div id="item-lists-page" style="display: none; position: relative">
+        <div id="list-name" style="height: 7vh">
+            <div>
+                <div class="glyphicon glyphicon-list white" aria-hidden="true" style="display: inline; float: left; padding-left: 5px"></div>
+                <div id="list-name-id" class="white" style="padding-left: 5px; width: 70%; display: inline"><b></b></div>
+                <div id="list-name-edit" class="glyphicon glyphicon-pencil white" aria-hidden="true" style="padding-right: 5px; float: right; display: inline"></div>
             </div>
         </div>
-    </div>
 
-    <div id="bottom-ad-space" class="bottom-ad-space center-button"><span>Ads come here</span></div>
+        <div id="item-lists" class="list-container" style="height: 80vh">
+        </div>
+
+        <!--<div style="width: 100%; overflow-y: auto; padding: 10px; background-color: lightgray;>-->
+            <div style="width: 100%; margin: auto; display: block; overflow-y: auto">
+                <div id="taskbar-group" class="btn-group btn-group-lg" role="group" aria-label="..." style="margin: auto; width: 100%; display: block">
+                    <button id="back-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-menu-left white" aria-hidden="true"></span>
+                    </button>
+                    <button id="voice-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-ice-lolly white" aria-hidden="true"></span>
+                    </button>
+                    <button id="camera-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-camera white" aria-hidden="true"></span>
+                    </button>
+                    <button id="share-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-share white" aria-hidden="true"></span>
+                    </button>
+                    <button id="add-item-btn" type="button" class="btn btn-sm background-green" style="width: 20%">
+                        <span class="glyphicon glyphicon-plus white" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
 </div>
 
 </body>
