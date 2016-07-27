@@ -11,20 +11,31 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="SocialSharing.js"></script>
 
 </head>
 <body class="background-blue" style="height: 100%; font-family: 'PT Sans'">
 
 <div id="main-container" class="container cart-container" style="height: 100%">
-    <div class="cart-header" style="height: 5vh; margin-top: 2px">
-        <div style="padding-left: 4px; padding-top: 2px">
-            <span class="glyphicon glyphicon-shopping-cart orange" aria-hidden="true"></span>
-            <span class="white" style="padding-left: 5px"><b>Smart Shopper List</b></span>
-        </div>
-    </div>
+    <!--<div class="cart-header" style="height: 5vh; margin-top: 2px">-->
+        <!--<div style="padding-left: 4px; padding-top: 2px">-->
+            <!--<span class="glyphicon glyphicon-shopping-cart orange" aria-hidden="true"></span>-->
+            <!--<span class="white" style="padding-left: 5px"><b>Smart Shopper List</b></span>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div id="shopping-lists-page" style="position: relative">
-        <div id="shopping-lists" class="list-container" style="height: 87vh;"></div>
+        <div style="height: 8vh; margin: 5px 5px 0px 5px">
+            <div class="input-group stylish-input-group">
+                <input id='shopping-list-search' type="text" class="form-control"  placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+            </div>
+        </div>
+        <div id="shopping-lists" class="list-container" style="height: 84vh;"></div>
         <div style="height: 8vh">
             <button id="create-list-button" type="submit" class = "btn btn-success btn-lg new-list-button" style="font-size: x-large; position: absolute; bottom: 0">
                 <span class="glyphicon glyphicon-plus white" aria-hidden="true" style="padding-right: 5px"></span>New
@@ -33,6 +44,16 @@
     </div>
 
     <div id="item-lists-page" style="display: none; position: relative">
+        <div style="height: 8vh; margin: 5px 5px 0px 5px">
+            <div class="input-group stylish-input-group">
+                <input id='items-search' type="text" class="form-control"  placeholder="Search" >
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+            </div>
+        </div>
         <div id="list-name" style="height: 7vh">
             <div>
                 <div class="glyphicon glyphicon-list white" aria-hidden="true" style="display: inline; float: left; padding-left: 5px"></div>
@@ -41,7 +62,7 @@
             </div>
         </div>
 
-        <div id="item-lists" class="list-container" style="height: 80vh">
+        <div id="item-lists" class="list-container" style="height: 72vh">
         </div>
 
         <!--<div style="width: 100%; overflow-y: auto; padding: 10px; background-color: lightgray;>-->

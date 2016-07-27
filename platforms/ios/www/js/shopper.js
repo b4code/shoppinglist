@@ -19,7 +19,10 @@ window.setTimeout(function () {
     console.log('Time out');
 
     $("document").ready(function () {
-        console.log(cordova.file);
+        console.log('#########################' + cordova.file);
+
+        var fileSystem;
+        var fileEntry;
 
         // User selected list
         var selectedListID = null;
@@ -40,10 +43,11 @@ window.setTimeout(function () {
         };
 
         // The uber object for all the lists and their items
-        var l = {};
-        generateLists();
+        var l;
+        // generateLists();
 
         function generateLists() {
+            console.log(l);
             for (var key in l) {
                 var listObj = l[key];
                 var id = key.substring(0, key.indexOf('-'));
@@ -102,6 +106,7 @@ window.setTimeout(function () {
             }
 
             $("#list-name-edit").on("click", function() {
+                $("#list-name-id").attr("contenteditable", true);
                 $("#list-name-id").focus();
             });
 
@@ -110,8 +115,11 @@ window.setTimeout(function () {
                     if ($("#list-name-id").html() != '') {
                         $("#list-name-id").html($("#list-name-id").html().capitalizeFirstLetter());
                         l[selectedList].name = $("#list-name-id").html();
+                        $("#list-name-id").removeAttr("contenteditable");
                         console.log(l);
                         this.blur();
+
+                        writeFile();
                     }
                     else {
                         refresh();
@@ -194,6 +202,8 @@ window.setTimeout(function () {
                         console.log(l);
 
                         this.blur();
+
+                        writeFile();
                     }
                     else {
                         refresh();
@@ -223,6 +233,7 @@ window.setTimeout(function () {
                     console.log(l);
 
                     this.blur();
+                    writeFile();
                 }
                 else {
                     // $("#" + listDivID + "-list-div").remove();
@@ -233,9 +244,10 @@ window.setTimeout(function () {
             });
 
             $("#" + listDeleteID).on('click', function () {
-                delete l[id];
+                delete l[listNameID];
                 // $("#" + listDivID + "-list-div").remove();
                 // generateLists();
+                writeFile();
                 refresh();
                 console.log(l);
             });
@@ -321,6 +333,7 @@ window.setTimeout(function () {
                         console.log(l);
 
                         this.blur();
+                        writeFile();
                     }
                     else {
                         // $(".shopping-list").remove();
@@ -346,6 +359,7 @@ window.setTimeout(function () {
                     console.log(l);
 
                     this.blur();
+                    writeFile();
                 }
                 else {
                     // $(".shopping-list").remove();
@@ -363,6 +377,7 @@ window.setTimeout(function () {
                 l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                 l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
                 console.log(l);
+                writeFile();
             });
 
             $("#" + itemSizeID).on('change', function () {
@@ -374,6 +389,7 @@ window.setTimeout(function () {
                 l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                 l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
                 console.log(l);
+                writeFile();
             });
 
             $("#" + itemDeleteID).on('click', function () {
@@ -386,6 +402,7 @@ window.setTimeout(function () {
 
                 refresh();
                 console.log(l);
+                writeFile();
             });
 
             $("#" + itemCompleteID).on('click', function () {
@@ -399,6 +416,8 @@ window.setTimeout(function () {
                     $("#" + itemCompleteID).addClass('green');
                     $("#" + itemCompleteActionID).removeClass('white');
                     $("#" + itemCompleteActionID).addClass('green');
+
+                    writeFile();
                 }
                 else {
                     var selectedList = selectedListID + "-list-name";
@@ -411,6 +430,8 @@ window.setTimeout(function () {
                     $("#" + itemCompleteID).addClass('white');
                     $("#" + itemCompleteActionID).removeClass('green');
                     $("#" + itemCompleteActionID).addClass('white');
+
+                    writeFile();
                 }
                 console.log(l);
             });
@@ -425,6 +446,8 @@ window.setTimeout(function () {
                     $("#" + itemCompleteID).addClass('green');
                     $("#" + itemCompleteActionID).removeClass('white');
                     $("#" + itemCompleteActionID).addClass('green');
+
+                    writeFile();
                 }
                 else {
                     var selectedList = selectedListID + "-list-name";
@@ -435,6 +458,8 @@ window.setTimeout(function () {
                     $("#" + itemCompleteID).addClass('white');
                     $("#" + itemCompleteActionID).removeClass('green');
                     $("#" + itemCompleteActionID).addClass('white');
+
+                    writeFile();
                 }
                 console.log(l);
             });
@@ -475,6 +500,8 @@ window.setTimeout(function () {
                     l[selectedList].items[itemNameID].name = itemsSplit[item].trim().capitalizeFirstLetter();
                 }
 
+                writeFile();
+
                 // this.blur();
                 // =====================================================================================================
 
@@ -483,5 +510,60 @@ window.setTimeout(function () {
             }, maxMatches, promptString, language);
         }
 
+        window.requestFileSystem(window.PERSISTENT, 5 * 1024 * 1024, function (fs) {
+            console.log('file system open: ' + fs.name);
+            createFile(fs.root, "shopping-lists.txt");
+            fileSystem = fs;
+        },
+            function(err)  {
+            console.log('Error: ' + err);
+        });
+
+        function createFile(dirEntry, fileName) {
+            // Creates a new file or returns the file if it already exists.
+            dirEntry.getFile(fileName, {create: true, exclusive: false}, function(fe) {
+                fileEntry = fe;
+                readFile();
+            },
+                function(err)  {
+                console.log('Error: ' + err);
+            });
+        }
+
+        function readFile() {
+            fileEntry.file(function (file) {
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    console.log("Successful file read: " + this.result);
+                    l = JSON.parse(this.result);
+                    console.log('########### Read file: ' + l);
+                    generateLists();
+                };
+
+                reader.readAsText(file);
+            });
+        }
+
+        function writeFile(dataObj) {
+            // Create a FileWriter object for our FileEntry (log.txt).
+            fileEntry.createWriter(function (fileWriter) {
+
+                fileWriter.onwriteend = function() {
+                    console.log("Successful file write...");
+                };
+
+                fileWriter.onerror = function (e) {
+                    console.log("Failed file write: " + e.toString());
+                };
+
+                // If data object is not passed in,
+                // create a new Blob instead.
+                if (!dataObj) {
+                    dataObj = new Blob([JSON.stringify(l)], { type: 'text/plain' });
+                }
+
+                fileWriter.write(dataObj);
+            });
+        }
     });
 }, 1000);
