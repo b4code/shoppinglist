@@ -100,8 +100,13 @@ window.setTimeout(function () {
 
                     var itemDivID = id + '-item';
                     var itemNameID = id + "-item-name";
+                    var itemQSDetailsID = id + "-item-q-s-details";
                     var itemQuantityID = id + "-item-q";
                     var itemSizeID = id + "-item-s";
+                    var itemQuantityValID = id + "-item-q-val";
+                    var itemSizeValID = id + "-item-s-val";
+                    var itemSizeDimensionID = id + "-item-s-dimension";
+                    var itemSizeDimensionValID = id + "-item-s-dimension-val";
                     var itemOptionsChevron = id + "-options-chevron";
                     var itemCompleteID = id + "-item-complete";
                     var itemCompleteActionID = id + "-item-complete-action";
@@ -109,7 +114,29 @@ window.setTimeout(function () {
                     $("#" + itemNameID).html(itemObj.name);
                     $("#" + itemQuantityID).val(itemObj.quantity);
                     $("#" + itemSizeID).val(itemObj.size);
+                    $("#" + itemSizeDimensionID).val(itemObj.sizeDimension);
                     $("#" + itemOptionsChevron).css("display", "block");
+
+                    console.log(itemObj.quantity);
+
+                    if (itemObj.quantity) {
+                        $("#" + itemQuantityValID).html("Q: " + itemObj.quantity);
+                        $("#" + itemQuantityID).val(itemObj.quantity);
+                    }
+
+                    if (itemObj.size) {
+                        $("#" + itemSizeValID).html("S: " + itemObj.size);
+                        $("#" + itemSizeID).val(itemObj.size);
+                    }
+
+                    if (itemObj.sizeDimension) {
+                        $("#" + itemSizeDimensionValID).html(itemObj.sizeDimension);
+                        $("#" + itemSizeDimensionID).val(itemObj.sizeDimension);
+                    }
+
+                    if (itemObj.quantity || itemObj.size) {
+                        $("#" + itemQSDetailsID).css("display", "block");
+                    }
 
                     var itemsSearchVal = $("#items-search").val();
                     if (!itemObj.name.includes(itemsSearchVal)) {
@@ -284,8 +311,10 @@ window.setTimeout(function () {
                     '</div>' +
                     '<div id="gen-id-item-details" data-toggle="collapse" data-target="#gen-id-item-options" style="margin-left: 5px; padding-bottom: 2px; width: 70%; float: left">' +
                         '<div id="gen-id-item-name" style="float:left; margin-left: 5px; padding-bottom: 2px; display: inline-block; text-decoration: replace-line-through"></div>' +
-                        '<div id="gen-id-item-q-s" style="float:right">' +
-                            '<label class="q-s-details-label" >Q: 10 S: 20 lbs</label>' +
+                        '<div style="float:right; display: none" id="gen-id-item-q-s-details" class="q-s-details-label">' +
+                            '<span id="gen-id-item-q-val"></span>' +
+                            '<span id="gen-id-item-s-val" style="padding-left: 3px"></span>' +
+                            '<span id="gen-id-item-s-dimension-val" style="padding-left: 3px"></span>' +
                         '</div>' +
                     '</div>' +
                     '<div style="float: right;"><span id="gen-id-options-chevron" style="display: none" class="glyphicon glyphicon-option-vertical dark-gray" data-toggle="collapse" data-target="#gen-id-item-options"></span></div>' +
@@ -301,7 +330,7 @@ window.setTimeout(function () {
                         '<div style="float: left; width: 40%; padding-left: 5px">' +
                             '<label for="gen-id-item-s" class="q-s-label">S:</label>' +
                             '<input type="number" id="gen-id-item-s" class="s-input">' +
-                            '<select class="s-select"> ' +
+                            '<select id="gen-id-item-s-dimension" class="s-select"> ' +
                                 '<option value="lbs">lbs</option>' +
                                 '<option value="kgs">kgs</option> ' +
                                 '<option value="gms">gms</option> ' +
@@ -335,6 +364,10 @@ window.setTimeout(function () {
             var itemOptionsChevron = itemDivID + "-options-chevron";
             var itemQuantityID = itemDivID + "-item-q";
             var itemSizeID = itemDivID + "-item-s";
+            var itemSizeDimensionID = itemDivID + "-item-s-dimension";
+            var itemSizeDimensionValID = itemDivID + "-item-s-dimension-val";
+            var itemQuantityValID = itemDivID + "-item-q-val";
+            var itemSizeValID = itemDivID + "-item-s-val";
             var itemDeleteID = itemDivID + "-item-delete";
             var itemCompleteID = itemDivID + "-item-complete";
             var itemCompleteActionID = itemDivID + "-item-complete-action";
@@ -379,6 +412,7 @@ window.setTimeout(function () {
                             l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
                             l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                             l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
+                            l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
 
                             $("#" + itemOptionsChevron).css('display', 'block');
                             $("#" + itemNameID).removeAttr('contenteditable');
@@ -413,6 +447,7 @@ window.setTimeout(function () {
                     l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
                     l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                     l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
+                    l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
 
                     $("#" + itemOptionsChevron).css('display', 'block');
                     //console.log(l);
@@ -435,6 +470,11 @@ window.setTimeout(function () {
                 l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
                 l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                 l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
+                l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
+
+                if ($("#" + itemQuantityID).val()) {
+                    $("#" + itemQuantityValID).html("Q: " + $("#" + itemQuantityID).val());
+                }
                 //console.log(l);
                 writeFile();
             });
@@ -447,6 +487,32 @@ window.setTimeout(function () {
                 l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
                 l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                 l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
+                l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
+
+                if ($("#" + itemSizeID).val()) {
+                    $("#" + itemSizeValID).html("S: " + $("#" + itemSizeID).val());
+                    $("#" + itemSizeDimensionValID).html($("#" + itemSizeDimensionID).val());
+                }
+
+                //console.log(l);
+                writeFile();
+            });
+
+            $("#" + itemSizeDimensionID).on('change', function () {
+                var selectedList = selectedListID + "-list-name";
+
+                l[selectedList].items[itemNameID] = {};
+                l[selectedList].items[itemNameID].id = itemNameID;
+                l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
+                l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
+                l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
+                l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
+
+                if ($("#" + itemSizeID).val()) {
+                    $("#" + itemSizeValID).html("S: " + $("#" + itemSizeID).val());
+                    $("#" + itemSizeDimensionValID).html($("#" + itemSizeDimensionID).val());
+                }
+
                 //console.log(l);
                 writeFile();
             });
