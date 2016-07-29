@@ -16,7 +16,6 @@ document.getElementsByTagName("head")[0].appendChild(s1);
 document.getElementsByTagName("head")[0].appendChild(s2);
 
 window.setTimeout(function () {
-    //console.log('Time out');
 
     $("document").ready(function () {
 
@@ -190,10 +189,10 @@ window.setTimeout(function () {
                             '<span id="gen-id-list-delete" class="glyphicon glyphicon-trash white" aria-hidden="true"></span>' +
                         '</div>' +
                     '</div>' +
-                '<br>' +
-                '<div class="progress" style="width: 100%; height: 5px; margin-bottom: 1px;">' +
-                '<div id="gen-id-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="100%" aria-valuemin="0" aria-valuemax="100%" style="background-color: lightgreen"></div>' +
-                '</div>' +
+                    '<br>' +
+                    '<div class="progress" style="width: 100%; height: 5px; margin-bottom: 1px;">' +
+                        '<div id="gen-id-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="100%" aria-valuemin="0" aria-valuemax="100%" style="background-color: lightgreen"></div>' +
+                    '</div>' +
                 '</div>';
 
             var listDivID = id;
@@ -283,34 +282,37 @@ window.setTimeout(function () {
                     '<div style="float: left; padding-left: 3px">' +
                         '<span class="glyphicon glyphicon-record dark-gray" aria-hidden="true"></span>' +
                     '</div>' +
-                    '<div id="gen-id-item-name" style="float:left; margin-left: 5px; padding-bottom: 2px; width: 70%; display: inline-block; text-decoration: replace-line-through" data-toggle="collapse" data-target="#gen-id-item-options"></div>' +
+                    '<div id="gen-id-item-details" data-toggle="collapse" data-target="#gen-id-item-options" style="margin-left: 5px; padding-bottom: 2px; width: 70%; float: left">' +
+                        '<div id="gen-id-item-name" style="float:left; margin-left: 5px; padding-bottom: 2px; display: inline-block; text-decoration: replace-line-through"></div>' +
+                        '<div id="gen-id-item-q-s" style="float:right">' +
+                            '<label class="q-s-details-label" >Q: 10 S: 20 lbs</label>' +
+                        '</div>' +
+                    '</div>' +
                     '<div style="float: right;"><span id="gen-id-options-chevron" style="display: none" class="glyphicon glyphicon-option-vertical dark-gray" data-toggle="collapse" data-target="#gen-id-item-options"></span></div>' +
                     '<div style="float: right; padding-right: 10px">' +
                         '<span id="gen-id-item-complete" class="glyphicon glyphicon-ok-sign white" style="size: " aria-hidden="true"></span>' +
                     '</div>' +
                     '<br>' +
-                    '<div id="gen-id-item-options" class="full-width collapse item-options" style="padding: 10px; overflow-y: auto">' +
-                        '<div style="float: left">' +
-                            '<div style="display: inline; float: left">Q:</div>' +
-                            '<div class="input-group" style="width: 120px; float: left; padding-left: 10px">' +
-                                '<span class="input-group-btn">' +
-                                    '<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quant[2]">' +
-                                        '<span class="glyphicon glyphicon-minus"></span>' +
-                                    '</button>' +
-                                '</span>' +
-                                '<input id="gen-id-item-q" type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">' +
-                                    '<span class="input-group-btn">' +
-                                        '<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">' +
-                                            '<span class="glyphicon glyphicon-plus"></span>' +
-                                        '</button>' +
-                                    '</span>' +
-                            '</div>' +
+                    '<div id="gen-id-item-options" class="full-width collapse item-options" style="padding: 10px; overflow-y: auto; width: 100%">' +
+                        '<div style="float: left; width: 20%">' +
+                            '<label for="gen-id-item-q" class="q-s-label">Q:</label>' +
+                            '<input type="number" id="gen-id-item-q" class="q-input">' +
                         '</div>' +
-                        '<div style="float: left; padding-left: 20px">' +
-                            '<div style="display: inline; float: left">S:</div>' +
-                            '<div class="input-group" style="width: 120px; float: left; padding-left: 10px">' +
-                                '<input id="gen-id-item-s" type="text" name="quant[2]" class="form-control" value="10 lbs">' +
-                            '</div>' +
+                        '<div style="float: left; width: 40%; padding-left: 5px">' +
+                            '<label for="gen-id-item-s" class="q-s-label">S:</label>' +
+                            '<input type="number" id="gen-id-item-s" class="s-input">' +
+                            '<select class="s-select"> ' +
+                                '<option value="lbs">lbs</option>' +
+                                '<option value="kgs">kgs</option> ' +
+                                '<option value="gms">gms</option> ' +
+                                '<option value="cms">cms</option> ' +
+                                '<option value="mts">mts</option> ' +
+                                '<option value="kms">kms</option> ' +
+                                '<option value="miles">miles</option> ' +
+                                '<option value="yards">yards</option> ' +
+                                '<option value="sft">sft</option> ' +
+                                '<option value="s-yds">s-yds</option> ' +
+                            '</select>' +
                         '</div>' +
                         '<div id="gen-id-item-delete" style="float: right; padding-right: 10px">' +
                             '<span class="glyphicon glyphicon-trash white" aria-hidden="true"></span>' +
@@ -319,7 +321,7 @@ window.setTimeout(function () {
                             '<span id="gen-id-item-complete-action" class="glyphicon glyphicon-ok-sign white" aria-hidden="true"></span>' +
                         '</div>' +
                         '<div style="float: right; padding-right: 10px">' +
-                            '<span id="gen-id-item-edit-action" class="glyphicon glyphicon-pencil blue" aria-hidden="true"></span>' +
+                            '<span id="gen-id-item-edit-action" class="glyphicon glyphicon-pencil white" aria-hidden="true"></span>' +
                         '</div>' +
                     '</div>' +
                 '</div>';
@@ -598,11 +600,11 @@ window.setTimeout(function () {
 
         function recognizeSpeech() {
             var maxMatches = 1;
-            var promptString = "Speak now. "; // optional
+            var promptString = "Speak now. Items are separated by 'and'"; // optional
             var language = "en-US";                     // optional
 
             setTimeout(function() {
-                window.plugins.speechrecognizer.startRecognize(function(result){
+                window.plugins.speechrecognizer.startRecognize(function(result) {
                     // // =====================================================================================================
                     var itemSpoken = result[0];
                     var itemsSplit = itemSpoken.split('and');

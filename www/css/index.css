@@ -178,12 +178,61 @@
     background: white !important;
     padding: 0px 0px;
 }
+
 .stylish-input-group .form-control{
     border-right:0;
     box-shadow:0 0 0;
     border-color:#ccc;
 }
+
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+
+.q-s-label {
+    font-size: small;
+    font-weight: 700;
+    padding-right: 3px;
+}
+
+.q-s-details-label {
+    font-size: small;
+    font-weight: 700;
+    padding-right: 3px;
+    color: #3c3c3c;
+    background-color: #9acfea;
+    border-radius: 5px;
+    padding-left: 3px;
+}
+
+.q-input {
+   width: 70%;
+   border: 0;
+   font-size: small;
+    border-radius: 5px;
+}
+
+.s-input {
+    width: 30%;
+    padding-left: 3px;
+    border: 0;
+    font-size: small;
+    -webkit-appearance: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.s-select {
+    width:50%;
+    -webkit-appearance: none;
+    padding: 1px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: white;
+    border-top:0;
+    border-bottom: 0;
+    border-right:0;
+    font-size: small;
+    padding-left: 3px
 }
