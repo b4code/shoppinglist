@@ -236,3 +236,8 @@
     font-size: small;
     padding-left: 3px
 }
+
+#list-name-id {
+    font-size: x-large;
+    text-transform: uppercase;
+}

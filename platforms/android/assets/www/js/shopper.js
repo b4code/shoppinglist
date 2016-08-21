@@ -81,7 +81,7 @@ window.setTimeout(function () {
                 }
 
                 var width = (totalCount == 0)? 0 : (completeCount/totalCount * 100);
-                $("#" + listProgressBar).css('width', width+'%');
+                $("#" + listProgressBar).animate({width: width+'%'});
             }
         }
 
@@ -89,6 +89,9 @@ window.setTimeout(function () {
             var selectedList = selectedListID + "-list-name";
 
             $("#list-name-id").html(l[selectedList].name);
+            var listProgressBar = "list-progress-bar";
+            var completeCount =   0;
+            var totalCount = 0;
 
             if (l[selectedList] != null) {
                 for (var key in l[selectedList].items) {
@@ -101,9 +104,7 @@ window.setTimeout(function () {
                     var itemDivID = id + '-item';
                     var itemNameID = id + "-item-name";
                     var itemQSDetailsID = id + "-item-q-s-details";
-                    var itemQuantityID = id + "-item-q";
                     var itemSizeID = id + "-item-s";
-                    var itemQuantityValID = id + "-item-q-val";
                     var itemSizeValID = id + "-item-s-val";
                     var itemSizeDimensionID = id + "-item-s-dimension";
                     var itemSizeDimensionValID = id + "-item-s-dimension-val";
@@ -112,30 +113,19 @@ window.setTimeout(function () {
                     var itemCompleteActionID = id + "-item-complete-action";
 
                     $("#" + itemNameID).html(itemObj.name);
-                    $("#" + itemQuantityID).val(itemObj.quantity);
                     $("#" + itemSizeID).val(itemObj.size);
                     $("#" + itemSizeDimensionID).val(itemObj.sizeDimension);
                     $("#" + itemOptionsChevron).css("display", "block");
 
-                    console.log(itemObj.quantity);
-
-                    if (itemObj.quantity) {
-                        $("#" + itemQuantityValID).html("Q: " + itemObj.quantity);
-                        $("#" + itemQuantityID).val(itemObj.quantity);
-                    }
-
                     if (itemObj.size) {
                         $("#" + itemSizeValID).html("S: " + itemObj.size);
                         $("#" + itemSizeID).val(itemObj.size);
+                        $("#" + itemQSDetailsID).css("display", "block");
                     }
 
                     if (itemObj.sizeDimension) {
                         $("#" + itemSizeDimensionValID).html(itemObj.sizeDimension);
                         $("#" + itemSizeDimensionID).val(itemObj.sizeDimension);
-                    }
-
-                    if (itemObj.quantity || itemObj.size) {
-                        $("#" + itemQSDetailsID).css("display", "block");
                     }
 
                     var itemsSearchVal = $("#items-search").val();
@@ -163,7 +153,16 @@ window.setTimeout(function () {
                         $("#" + itemCompleteActionID).removeClass('green');
                         $("#" + itemCompleteActionID).addClass('white');
                     }
+
+                    totalCount++;
+                    if (itemObj.complete == true) {
+                        completeCount++
+                    }
                 }
+
+                var width = (totalCount == 0)? 0 : (completeCount/totalCount * 100);
+                $("#" + listProgressBar).animate({width: width+'%'});
+
             }
 
             $("#list-name-edit").on("click", function() {
@@ -312,25 +311,25 @@ window.setTimeout(function () {
                     '<div id="gen-id-item-details" data-toggle="collapse" data-target="#gen-id-item-options" style="margin-left: 5px; padding-bottom: 2px; width: 70%; float: left">' +
                         '<div id="gen-id-item-name" style="float:left; margin-left: 5px; padding-bottom: 2px; display: inline-block; text-decoration: replace-line-through"></div>' +
                         '<div style="float:right; display: none" id="gen-id-item-q-s-details" class="q-s-details-label">' +
-                            '<span id="gen-id-item-q-val"></span>' +
                             '<span id="gen-id-item-s-val" style="padding-left: 3px"></span>' +
                             '<span id="gen-id-item-s-dimension-val" style="padding-left: 3px"></span>' +
                         '</div>' +
                     '</div>' +
                     '<div style="float: right;"><span id="gen-id-options-chevron" style="display: none" class="glyphicon glyphicon-option-vertical dark-gray" data-toggle="collapse" data-target="#gen-id-item-options"></span></div>' +
                     '<div style="float: right; padding-right: 10px">' +
-                        '<span id="gen-id-item-complete" class="glyphicon glyphicon-ok-sign white" style="size: " aria-hidden="true"></span>' +
+                        '<span id="gen-id-item-complete" class="glyphicon glyphicon-ok-sign dark-gray" style="size: " aria-hidden="true"></span>' +
                     '</div>' +
                     '<br>' +
                     '<div id="gen-id-item-options" class="full-width collapse item-options" style="padding: 10px; overflow-y: auto; width: 100%">' +
-                        '<div style="float: left; width: 20%">' +
-                            '<label for="gen-id-item-q" class="q-s-label">Q:</label>' +
-                            '<input type="number" id="gen-id-item-q" class="q-input">' +
-                        '</div>' +
+                        // '<div style="float: left; width: 20%">' +
+                        //     '<label for="gen-id-item-q" class="q-s-label">Q:</label>' +
+                        //     '<input type="number" id="gen-id-item-q" class="q-input">' +
+                        // '</div>' +
                         '<div style="float: left; width: 40%; padding-left: 5px">' +
                             '<label for="gen-id-item-s" class="q-s-label">S:</label>' +
                             '<input type="number" id="gen-id-item-s" class="s-input">' +
                             '<select id="gen-id-item-s-dimension" class="s-select"> ' +
+                                '<option value="" selected="selected">-SELECT-</option>' +
                                 '<option value="lbs">lbs</option>' +
                                 '<option value="kgs">kgs</option> ' +
                                 '<option value="gms">gms</option> ' +
@@ -362,11 +361,10 @@ window.setTimeout(function () {
             var itemID = id + '-item';
             var itemNameID = itemDivID + "-item-name";
             var itemOptionsChevron = itemDivID + "-options-chevron";
-            var itemQuantityID = itemDivID + "-item-q";
             var itemSizeID = itemDivID + "-item-s";
+            var itemQSDetailsID = id + "-item-q-s-details";
             var itemSizeDimensionID = itemDivID + "-item-s-dimension";
             var itemSizeDimensionValID = itemDivID + "-item-s-dimension-val";
-            var itemQuantityValID = itemDivID + "-item-q-val";
             var itemSizeValID = itemDivID + "-item-s-val";
             var itemDeleteID = itemDivID + "-item-delete";
             var itemCompleteID = itemDivID + "-item-complete";
@@ -410,7 +408,6 @@ window.setTimeout(function () {
                             l[selectedList].items[itemNameID] = {};
                             l[selectedList].items[itemNameID].id = itemNameID;
                             l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
-                            l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                             l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
                             l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
 
@@ -445,7 +442,6 @@ window.setTimeout(function () {
                     l[selectedList].items[itemNameID] = {};
                     l[selectedList].items[itemNameID].id = itemNameID;
                     l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
-                    l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
                     l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
                     l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
 
@@ -462,32 +458,14 @@ window.setTimeout(function () {
                 }
             })
 
-            $("#" + itemQuantityID).on('change', function () {
-                var selectedList = selectedListID + "-list-name";
-
-                l[selectedList].items[itemNameID] = {};
-                l[selectedList].items[itemNameID].id = itemNameID;
-                l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
-                l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
-                l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
-                l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
-
-                if ($("#" + itemQuantityID).val()) {
-                    $("#" + itemQuantityValID).html("Q: " + $("#" + itemQuantityID).val());
-                }
-                //console.log(l);
-                writeFile();
-            });
-
             $("#" + itemSizeID).on('change', function () {
                 var selectedList = selectedListID + "-list-name";
 
-                l[selectedList].items[itemNameID] = {};
+                // l[selectedList].items[itemNameID] = {};
                 l[selectedList].items[itemNameID].id = itemNameID;
-                l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
-                l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
+                // l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
                 l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
-                l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
+                // l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
 
                 if ($("#" + itemSizeID).val()) {
                     $("#" + itemSizeValID).html("S: " + $("#" + itemSizeID).val());
@@ -496,16 +474,30 @@ window.setTimeout(function () {
 
                 //console.log(l);
                 writeFile();
+
+                if (l[selectedList].items[itemNameID].size && l[selectedList].items[itemNameID].size > 0) {
+                    $("#" + itemSizeValID).html("S: " + l[selectedList].items[itemNameID].size);
+                    $("#" + itemSizeID).val(l[selectedList].items[itemNameID].size);
+                    $("#" + itemQSDetailsID).css("display", "block");
+                }
+                else {
+                    $("#" + itemQSDetailsID).css("display", "none");
+                }
+
+                if (l[selectedList].items[itemNameID].sizeDimension) {
+                    $("#" + itemSizeDimensionValID).html(l[selectedList].items[itemNameID].sizeDimension);
+                    $("#" + itemSizeDimensionID).val(l[selectedList].items[itemNameID].sizeDimension);
+                }
+
             });
 
             $("#" + itemSizeDimensionID).on('change', function () {
                 var selectedList = selectedListID + "-list-name";
 
-                l[selectedList].items[itemNameID] = {};
+                // l[selectedList].items[itemNameID] = {};
                 l[selectedList].items[itemNameID].id = itemNameID;
-                l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
-                l[selectedList].items[itemNameID].quantity = $("#" + itemQuantityID).val();
-                l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
+                // l[selectedList].items[itemNameID].name = $("#" + itemNameID).html();
+                // l[selectedList].items[itemNameID].size = $("#" + itemSizeID).val();
                 l[selectedList].items[itemNameID].sizeDimension = $("#" + itemSizeDimensionID).val();
 
                 if ($("#" + itemSizeID).val()) {
@@ -515,6 +507,7 @@ window.setTimeout(function () {
 
                 //console.log(l);
                 writeFile();
+                refresh();
             });
 
             $("#" + itemDeleteID).on('click', function () {
@@ -558,6 +551,20 @@ window.setTimeout(function () {
 
                     writeFile();
                 }
+
+                // Set the progress bar correctly
+                var totalCount = 0;
+                var completeCount = 0;
+                for (var key in l[selectedList].items) {
+                    totalCount++;
+                    if (l[selectedList].items[key].complete) {
+                        completeCount++;
+                    }
+                }
+
+                var width = (totalCount == 0)? 0 : (completeCount/totalCount * 100);
+                $("#list-progress-bar").css('width', width+'%');
+
                 //console.log(l);
             });
 
@@ -586,6 +593,21 @@ window.setTimeout(function () {
 
                     writeFile();
                 }
+
+                // Set the progress bar correctly
+                var totalCount = 0;
+                var completeCount = 0;
+                for (var key in l[selectedList].items) {
+                    totalCount++;
+                    if (l[selectedList].items[key].complete) {
+                        completeCount++;
+                    }
+                }
+
+                var width = (totalCount == 0)? 0 : (completeCount/totalCount * 100);
+                // $("#list-progress-bar").css('width', width+'%');
+                $("#list-progress-bar").animate({width: width+'%'});
+
                 //console.log(l);
             });
         }
@@ -609,6 +631,13 @@ window.setTimeout(function () {
         });
 
         $("#back-btn").on("click", function () {
+            $("#shopping-list-search").val('');
+            refresh();
+            $("#item-lists-page").css("display", "none");
+            $("#shopping-lists-page").css("display", "block");
+        });
+
+        $("#back-div").on("click", function () {
             $("#shopping-list-search").val('');
             refresh();
             $("#item-lists-page").css("display", "none");
@@ -675,34 +704,36 @@ window.setTimeout(function () {
                     var itemSpoken = result[0];
                     var itemsSplit = itemSpoken.split('and');
                     for (var item in itemsSplit) {
-                        var selectedList = selectedListID + "-list-name";
-                        var contains = false;
+                        if (itemsSplit[item] != '') {
+                            var selectedList = selectedListID + "-list-name";
+                            var contains = false;
 
-                        for (var itemKey in l[selectedList].items) {
-                            var itemObj = l[selectedList].items[itemKey];
-                            console.log(JSON.stringify(itemObj));
+                            for (var itemKey in l[selectedList].items) {
+                                var itemObj = l[selectedList].items[itemKey];
+                                console.log(JSON.stringify(itemObj));
 
-                            if (itemObj) {
-                                if (itemsSplit[item].trim().capitalizeFirstLetter() == itemObj.name) {
-                                    contains = true;
-                                    break;
+                                if (itemObj) {
+                                    if (itemsSplit[item].trim().capitalizeFirstLetter() == itemObj.name) {
+                                        contains = true;
+                                        break;
+                                    }
                                 }
                             }
-                        }
 
-                        if (!contains) {
-                            var id = Date.now();
-                            update(id);
+                            if (!contains) {
+                                var id = Date.now();
+                                update(id);
 
-                            var itemNameID = id + "-item-name";
-                            var itemOptionsChevron = id + "-options-chevron";
+                                var itemNameID = id + "-item-name";
+                                var itemOptionsChevron = id + "-options-chevron";
 
-                            $("#" + itemNameID).html(itemsSplit[item].trim().capitalizeFirstLetter());
-                            $("#" + itemOptionsChevron).css('display', 'block');
+                                $("#" + itemNameID).html(itemsSplit[item].trim().capitalizeFirstLetter());
+                                $("#" + itemOptionsChevron).css('display', 'block');
 
-                            l[selectedList].items[itemNameID] = {};
-                            l[selectedList].items[itemNameID].id = itemNameID;
-                            l[selectedList].items[itemNameID].name = itemsSplit[item].trim().capitalizeFirstLetter();
+                                l[selectedList].items[itemNameID] = {};
+                                l[selectedList].items[itemNameID].id = itemNameID;
+                                l[selectedList].items[itemNameID].name = itemsSplit[item].trim().capitalizeFirstLetter();
+                            }
                         }
                     }
 
@@ -716,12 +747,16 @@ window.setTimeout(function () {
 
         function composeContent(id) {
             var selectedList = id + "-list-name";
-            var content = l[selectedList].name;
+            var content = l[selectedList].name.toUpperCase();
             content = content + '\n--------------------------\n';
+
             for (var key in l[selectedList].items) {
                 var item = l[selectedList].items[key];
-                content = content + item.name + '\n';
-                content = content + '\tQ: ' + item.quantity + '  S: ' + item.size + ' ' + ((item.complete) ? 'DONE' : '') + '\n\n'
+
+                content = content + item.name + ((item.hasOwnProperty('complete') && item.complete) ? ': DONE' : '') + '\n';
+                if (item.hasOwnProperty('size') && item.size != '') {
+                    content = content + '\tSize: ' + item.size + ((item.hasOwnProperty('sizeDimension') && item.sizeDimension != '') ? ' ' + item.sizeDimension : '') + '\n';
+                }
             }
 
             return content;
@@ -729,7 +764,7 @@ window.setTimeout(function () {
 
         window.requestFileSystem(window.PERSISTENT, 5 * 1024 * 1024, function (fs) {
             //console.log('file system open: ' + fs.name);
-            createFile(fs.root, "shopping-lists-5.txt");
+            createFile(fs.root, "shopping-lists-9.txt");
             fileSystem = fs;
         },
             function(err)  {
@@ -769,17 +804,17 @@ window.setTimeout(function () {
             fileEntry.createWriter(function (fileWriter) {
 
                 fileWriter.onwriteend = function() {
-                    //console.log("Successful file write...");
+                    console.log("Successful file write...");
                 };
 
                 fileWriter.onerror = function (e) {
-                    //console.log("Failed file write: " + e.toString());
+                    console.log("Failed file write: " + e.toString());
                 };
 
                 // If data object is not passed in,
                 // create a new Blob instead.
                 if (!dataObj) {
-                    dataObj = new Blob([JSON.stringify(l)], { type: 'text/plain' });
+                        dataObj = new Blob([JSON.stringify(l)], { type: 'text/plain' });
                 }
 
                 fileWriter.write(dataObj);

@@ -18,8 +18,9 @@
     <allow-intent href="*" />
     <name>Smart Shopping List</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A simple shopping list app
     </description>
+    <author email="bhanuchvk@gmail.com" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
